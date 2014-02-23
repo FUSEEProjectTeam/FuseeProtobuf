@@ -532,11 +532,11 @@ namespace ProtoBuf
         /// <summary>
         /// Reads a double-precision number from the stream; supported wire-types: Fixed32, Fixed64
         /// </summary>
-        public
-#if !FEAT_SAFE
- unsafe
-#endif
- double ReadDouble()
+        //public
+//#if !FEAT_SAFE
+// unsafe
+//#endif
+ public double ReadDouble()
         {
             switch (wireType)
             {
@@ -544,11 +544,11 @@ namespace ProtoBuf
                     return ReadSingle();
                 case WireType.Fixed64:
                     long value = ReadInt64();
-#if FEAT_SAFE
+//#if FEAT_SAFE
                     return BitConverter.ToDouble(BitConverter.GetBytes(value), 0);
-#else
-                    return *(double*)&value;
-#endif
+//#else
+//                    return *(double*)&value;
+//#endif
                 default:
                     throw CreateWireTypeException();
             }
@@ -831,9 +831,9 @@ namespace ProtoBuf
         /// Reads a single-precision number from the stream; supported wire-types: Fixed32, Fixed64
         /// </summary>
         public
-#if !FEAT_SAFE
- unsafe
-#endif
+//#if !FEAT_SAFE
+// unsafe
+//#endif
  float ReadSingle()
         {
             switch (wireType)
@@ -841,11 +841,11 @@ namespace ProtoBuf
                 case WireType.Fixed32:
                     {
                         int value = ReadInt32();
-#if FEAT_SAFE
+//#if FEAT_SAFE
                         return BitConverter.ToSingle(BitConverter.GetBytes(value), 0);
-#else
-                        return *(float*)&value;
-#endif
+//#else
+  //                      return *(float*)&value;
+//#endif
                     }
                 case WireType.Fixed64:
                     {
@@ -1374,14 +1374,15 @@ namespace ProtoBuf
         private static object lastReader;
         private static ProtoReader GetRecycled()
         {
-            return (ProtoReader)System.Threading.Interlocked.Exchange(ref lastReader, null);
+            lastReader = null;
+            return lastReader;
         }
         internal static void Recycle(ProtoReader reader)
         {
             if(reader != null)
             {
                 reader.Dispose();
-                System.Threading.Interlocked.Exchange(ref lastReader, reader);
+                lastReader = reader;
             }
         }
 #else

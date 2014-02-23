@@ -14,7 +14,7 @@ namespace ProtoBuf
 #else
             for (int i = 0; i < pool.Length; i++)
             {
-                Interlocked.Exchange(ref pool[i], null); // and drop the old value on the floor
+                pool[i] = null; // and drop the old value on the floor
             }
 #endif
         }
@@ -41,7 +41,7 @@ namespace ProtoBuf
 #else
             for (int i = 0; i < pool.Length; i++)
             {
-                if ((tmp = Interlocked.Exchange(ref pool[i], null)) != null) return (byte[])tmp;
+                if ((tmp = pool[i]) != null) return (byte[])tmp;
             }
 #endif
             return new byte[BufferLength];
@@ -88,7 +88,10 @@ namespace ProtoBuf
 #else
                 for (int i = 0; i < pool.Length; i++)
                 {
-                    if (Interlocked.CompareExchange(ref pool[i], buffer, null) == null)
+                    if(pool[i] == null){
+                        pool[i] = buffer;
+                    }
+                    if (pool[i] == null)
                     {
                         break; // found a null; swapped it in
                     }
