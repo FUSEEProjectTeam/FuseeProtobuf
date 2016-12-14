@@ -1,8 +1,18 @@
 FuseeProtobuf
 =============
 
-Customized protobuf-net library used for Fusee. Fusee is licensed under the MIT
-license (see below). Repository: https://github.com/FUSEEProjectTeam/Fusee
+Customized protobuf-net library used for Fusee.
+
+Build `Proto_FUSEE.sln`. This will generate several ouptuts. Two of them are used in FUSEE:
+
+- `precompile/bin/Debug/precompile.exe` - This is the precompiler generating a Serializer class for any `[ProtoContract]` attributed 
+   class found in a given dll. Copy this tool and all accompanying DLLs to `$(FuseeRoot)\ext\protobuf\PrecompileTool`.
+- `protobuf-net_Portable\bin\Debug` - This is the stripped-down protobuf dll only containing the attributes (such as `[ProtoContract]`).
+   Copy this DLL to `$(FuseeRoot)\ext\protobuf`. NOTE: This DLL is different to the DLL with the same name in the `PrecompileTool`
+   subdirectory.
+
+
+Fusee is licensed under the MIT license (see below). Repository: https://github.com/FUSEEProjectTeam/Fusee
 
 
 -------------------------------------------------------------------------------

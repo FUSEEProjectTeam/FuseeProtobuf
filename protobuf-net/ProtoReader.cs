@@ -1371,7 +1371,7 @@ namespace ProtoBuf
             }
         }
 #elif !PLAT_NO_INTERLOCKED
-        private static object lastReader;
+        private static ProtoReader lastReader;
         private static ProtoReader GetRecycled()
         {
             lastReader = null;

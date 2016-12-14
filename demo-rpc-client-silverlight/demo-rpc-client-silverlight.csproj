@@ -176,12 +176,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\protobuf-net_Silverlight\protobuf-net_Silverlight.csproj">
-      <Project>{35032FC5-65E0-4FE4-8DBC-A31F0694EC14}</Project>
-      <Name>protobuf-net_Silverlight</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

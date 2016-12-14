@@ -61,12 +61,6 @@
     <Compile Include="MyDtos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\protobuf-net_Silverlight\protobuf-net_Silverlight.csproj">
-      <Project>{35032fc5-65e0-4fe4-8dbc-a31f0694ec14}</Project>
-      <Name>protobuf-net_Silverlight</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
